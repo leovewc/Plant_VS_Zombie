@@ -10,6 +10,8 @@ data = {
         'SUMMON_CD' : -1,
         'CANPICK' : False,
         'PRICE' : 0,
+        'HP' : 1,
+        'ATK' : 20,
     },
 
     #data of normal zombie
@@ -23,6 +25,8 @@ data = {
         'SUMMON_CD' : -1,
         'CANPICK' : False,
         'PRICE' : 0,
+        'HP' : 200,
+        'ATK' : 10,
     },
 
     #data of sunshine
@@ -36,6 +40,8 @@ data = {
             'SUMMON_CD' : -1,
             'CANPICK' : True,
             'PRICE' : 25,
+            'HP' : 200000,
+            'ATK' : 0,
         },
 
     #data of sun flower
@@ -49,6 +55,8 @@ data = {
             'SUMMON_CD' : 8,
             'CANPICK' : False,
             'PRICE' : 50,
+            'HP' : 100,
+            'ATK' : 0,
         },
 
     #data of pea shooter
@@ -62,5 +70,7 @@ data = {
             'SUMMON_CD' : 1,
             'CANPICK' : False,
             'PRICE' : 100,
+            'HP' : 100,
+            'ATK' : 0,
         },
 }

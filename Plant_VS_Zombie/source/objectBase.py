@@ -7,6 +7,8 @@ class ObjectBase(image.Image):
         self.preIndexTime = 0
         self.prePositionTime = 0
         self.preSummonTime = 0
+        self.hp = self.getData()['HP']
+        self.atk = self.getData()['ATK']
         super(ObjectBase, self).__init__(
             self.getData()['PATH'],
             0,
@@ -20,7 +22,9 @@ class ObjectBase(image.Image):
         self.checkSummon()
         self.checkImageIndex()
         self.checkPosition()
-
+    def isCollide(self, other):
+        if self.getRect().colliderect(other.getRect()):
+            return True
     def getPositionCD(self):
         return self.getData()['POSITION_CD']
     def getSummonCD(self):

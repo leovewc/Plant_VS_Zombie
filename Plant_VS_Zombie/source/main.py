@@ -24,7 +24,6 @@ while True:
             game1.mouseClickHandler(event.button)
     game1.draw()
     game1.update()
-    ZOMBIE1 = zombieBase.ZombieBase(1, (1000, 200))
-    ZOMBIE1.draw(Win)
-    ZOMBIE1.update()
+
+
     py.display.update()
