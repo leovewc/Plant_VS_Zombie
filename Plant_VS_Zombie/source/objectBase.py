@@ -4,6 +4,8 @@ import data_object
 class ObjectBase(image.Image):
     def __init__(self, id, pos):
         self.id = id
+        self.status = 0
+        self.iceTime = 0
         self.preIndexTime = 0
         self.prePositionTime = 0
         self.preSummonTime = 0
@@ -23,12 +25,14 @@ class ObjectBase(image.Image):
         self.checkImageIndex()
         self.checkPosition()
     def isCollide(self, other):
-        if self.getRect(self.getCollideDeviation()).colliderect(other.getRect(other.getCollideDeviation())):
+        if self.getRect(self.getCollideDeviation(), self.getCollideSize()).colliderect(other.getRect(other.getCollideDeviation(), other.getCollideSize())):
             return True
     def getCollideDeviation(self):
         return self.getData()['COLLIDE_DEVIATION']
     def getPositionCD(self):
         return self.getData()['POSITION_CD']
+    def getCollideSize(self):
+        return self.getData()['COLLIDE_SIZE']
     def getSummonCD(self):
         return self.getData()['SUMMON_CD']
     def canPick(self):
@@ -61,7 +65,10 @@ class ObjectBase(image.Image):
             return False
         self.prePositionTime = time.time()
         speed = self.getSpeed()
-        self.pos = (self.pos[0] + speed[0], self.pos[1] + speed[1])
+        if self.status == 0:
+            self.pos = (self.pos[0] + speed[0], self.pos[1] + speed[1])
+        elif self.status == 1:
+            self.pos = (self.pos[0] + speed[0]/2, self.pos[1] + speed[1]/2)
         return True
 
     def preSummon(self):
