@@ -9,10 +9,10 @@ class Image(py.sprite.Sprite):
         self.pathIndexCount = pathIndexCount
         self.pos = list(pos)
         self.updateImage()
-    def getRect(self, collide_size=(0,0)):
+    def getRect(self, collide_deviation=0):
         rect = self.image.get_rect()
-        rect.x, rect.y = (self.pos[0], self.pos[1])
-        rect.width, rect.height = collide_size
+        rect.x, rect.y = (self.pos[0] + collide_deviation, self.pos[1] )
+
         return rect
 
     def updateImage(self):

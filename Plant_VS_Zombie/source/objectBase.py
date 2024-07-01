@@ -23,10 +23,10 @@ class ObjectBase(image.Image):
         self.checkImageIndex()
         self.checkPosition()
     def isCollide(self, other):
-        if self.getRect(self.getCollideSize()).colliderect(other.getRect(other.getCollideSize())):
+        if self.getRect(self.getCollideDeviation()).colliderect(other.getRect(other.getCollideDeviation())):
             return True
-    def getCollideSize(self):
-        return self.getData()['COLLIDE_SIZE']
+    def getCollideDeviation(self):
+        return self.getData()['COLLIDE_DEVIATION']
     def getPositionCD(self):
         return self.getData()['POSITION_CD']
     def getSummonCD(self):
