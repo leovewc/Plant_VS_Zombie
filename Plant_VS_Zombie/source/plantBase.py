@@ -2,6 +2,8 @@ import objectBase
 import sunshine
 import peaBullet
 import time
+import pygame as py
+from const import *
 class SunFlower(objectBase.ObjectBase):
     def __init__(self, id, pos):
         super(SunFlower, self).__init__(id, pos)
@@ -42,6 +44,8 @@ class PeaShooter(objectBase.ObjectBase):
     def doSummon(self):
         if self.hasBullet:
             self.hasBullet = False
+            sound1 = py.mixer.Sound(PATH_SHOOT)
+            sound1.play()
             return peaBullet.PeaBullet(0, (self.pos[0] + 3, self.pos[1]))
 
     def update(self):

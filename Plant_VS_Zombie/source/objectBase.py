@@ -1,6 +1,7 @@
 import image
 import time
 import data_object
+import pygame as py
 class ObjectBase(image.Image):
     def __init__(self, id, pos):
         self.id = id
@@ -24,6 +25,9 @@ class ObjectBase(image.Image):
         self.checkSummon()
         self.checkImageIndex()
         self.checkPosition()
+    def summonSound(self):
+        sound1 = py.mixer.Sound(self.getData()['SUMMON_SOUND_PATH'])
+        sound1.play()
     def isCollide(self, other):
         if self.getRect(self.getCollideDeviation(), self.getCollideSize()).colliderect(other.getRect(other.getCollideDeviation(), other.getCollideSize())):
             return True

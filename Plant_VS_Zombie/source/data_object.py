@@ -2,6 +2,7 @@ data = {
     #data of normal pea bullet
     0 : {
         'PATH' : 'picture/Bullet/PeaBullet/0.png',
+        'SUMMON_SOUND_PATH' : 'sound/bulletExplode.ogg',
         'IMAGE_INDEX_MAX' : 0,
         'IMAGE_INDEX_CD' : 0.00,
         'POSITION_CD' : 0.01,
@@ -36,11 +37,13 @@ data = {
     #data of sunshine
     2 : {
             'PATH' : 'picture/Sunshine/%d.png',
+            'SOUND_PATH' : 'sound/collectSun.ogg',
             'IMAGE_INDEX_MAX' : 22,
             'IMAGE_INDEX_CD' : 0.04,
             'POSITION_CD' : 0.05,
             'SIZE' : (78, 78),
             'COLLIDE_DEVIATION' : 0,
+            'COLLIDE_SIZE' : (78, 78),
             'SPEED' : (0, 1),
             'SUMMON_CD' : -1,
             'CANPICK' : True,
@@ -57,6 +60,7 @@ data = {
             'POSITION_CD' : 100000,
             'SIZE' : (73, 74),
             'COLLIDE_DEVIATION' : 0,
+            'COLLIDE_SIZE' : (73, 74),
             'SPEED' : (0, 0),
             'SUMMON_CD' : 8,
             'CANPICK' : False,
@@ -73,6 +77,7 @@ data = {
             'POSITION_CD' : 100000,
             'SIZE' : (71, 71),
             'COLLIDE_DEVIATION' : 0,
+            'COLLIDE_SIZE' : (71, 71),
             'SPEED' : (0, 0),
             'SUMMON_CD' : 1,
             'CANPICK' : False,

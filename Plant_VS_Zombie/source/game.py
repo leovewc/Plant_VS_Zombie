@@ -74,6 +74,7 @@ class Game(object):
                     if zombie.hp <= 0:
                         self.zombies.remove(zombie)
                     if summon.hp <= 0:
+                        summon.summonSound()
                         self.summons.remove(summon)
                     return
     def getIndexByPos(self, pos):
@@ -95,7 +96,8 @@ class Game(object):
         peaShooter = plantBase.PeaShooter(PEASHOOTER_ID, pos)
         self.plants.append(peaShooter)
     def addZombie(self, x, y):
-
+        sound1 = py.mixer.Sound(PATH_ZOMBIE_VOICE)
+        sound1.play()
         pos = LEFT_TOP[0] + x * GRID_SIZE[0], LEFT_TOP[1] + y * GRID_SIZE[1]-50
         zombie = zombieBase.ZombieBase(NORMALZOMBIE_ID, pos)
         self.zombies.append(zombie)
@@ -105,6 +107,8 @@ class Game(object):
                 continue
             rect = summon.getRect()
             if rect.collidepoint(mousePos):
+                sound1 = py.mixer.Sound(PATH_COLLECT_SUN)
+                sound1.play()
                 self.summons.remove(summon)
                 self.sunshine += summon.getPrice()
                 return True
@@ -122,8 +126,12 @@ class Game(object):
             return False
         self.sunshine -= data_object.data[objID]['PRICE']
         if objID == SUNFLOWER_ID:
+            sound1 = py.mixer.Sound(PATH_PLANT)
+            sound1.play()
             self.addSunFlower(x, y)
         elif objID == PEASHOOTER_ID:
+            sound1 = py.mixer.Sound(PATH_PLANT)
+            sound1.play()
             self.addPeaShooter(x, y)
 
 

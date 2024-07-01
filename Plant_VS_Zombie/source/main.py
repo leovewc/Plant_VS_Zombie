@@ -3,6 +3,7 @@ import sys
 from pygame.locals import *
 
 py.init()
+py.mixer.init()
 
 import image
 from const import *
