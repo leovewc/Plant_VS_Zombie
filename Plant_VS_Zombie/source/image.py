@@ -1,5 +1,6 @@
 import pygame as py
-
+import data_object
+from const import *
 class Image(py.sprite.Sprite):
     def __init__(self, pathFmt, pathIndex, pos, size, pathIndexCount):
         self.pathFmt = pathFmt
@@ -8,9 +9,10 @@ class Image(py.sprite.Sprite):
         self.pathIndexCount = pathIndexCount
         self.pos = list(pos)
         self.updateImage()
-    def getRect(self):
+    def getRect(self, collide_size=(0,0)):
         rect = self.image.get_rect()
-        rect.x, rect.y = self.pos
+        rect.x, rect.y = (self.pos[0], self.pos[1])
+        rect.width, rect.height = collide_size
         return rect
 
     def updateImage(self):
