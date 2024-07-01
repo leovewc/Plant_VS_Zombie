@@ -6,7 +6,7 @@ data = {
         'IMAGE_INDEX_CD' : 0.00,
         'POSITION_CD' : 0.01,
         'SIZE' : (56, 34),
-        'SPEED' : (5, 0),
+        'SPEED' : (500, 0),
         'SUMMON_CD' : -1,
         'CANPICK' : False,
         'PRICE' : 0,

@@ -27,3 +27,6 @@ while True:
 
 
     py.display.update()
+
+if __name__ == '__main__':
+    main()
