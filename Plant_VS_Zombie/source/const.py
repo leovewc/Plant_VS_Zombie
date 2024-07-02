@@ -14,3 +14,24 @@ GRID_SIZE = (76, 96)
 NORMALZOMBIE_ID = 1
 SUNFLOWER_ID = 3
 PEASHOOTER_ID = 4
+
+# zhiwucao
+FONT_PATH = "Font1.ttf"
+NAVYBLUE = (0, 0, 128)
+LIGHTYELLOW = (255, 255, 224)
+BLACK = (0, 0, 0)
+WHITE = (255, 255, 255)
+
+PLANT_CARD_INFO = {0: {'name': 'Sunflower', 'sun_cost': 50, 'frozen_time': 7, 'card_index': 'sunflower_card'},
+                   1: {'name': 'Peashooter', 'sun_cost': 100, 'frozen_time': 5, 'card_index': 'peashooter_card'}}
+PLANT_CARD_INDEX = {'Sunflower': 0, 'Peashooter': 1}
+SUN_INDEX = 'sun_cost'
+FROZEN_TIME_INDEX = 'frozen_time'
+CARD_INDEX = 'card_index'
+PLANT_NAME_INDEX = 'name'
+MENUBAR_BACKGROUND = 'menu_background'
+BAR_CARD_X_INTERNAL = 50
+CARD_MOVE_TIME = 1000
+
+CARD_LIST = [0, 1]
+
