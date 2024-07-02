@@ -14,4 +14,12 @@ class ZombieBase(objectBase.ObjectBase):
     #     if b:
     #         self.pos[0] -= 0.1
     #     return b
+    def fight(self, other):
+        self.hp -= other.atk
+        other.hp -= self.atk
+        if self.hp <= 0:
+            return True
+        if other.hp <= 0:
+            return False
+        return
     pass

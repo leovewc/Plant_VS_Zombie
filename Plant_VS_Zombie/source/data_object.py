@@ -26,7 +26,7 @@ data = {
         'SIZE' : (166, 144),
         'COLLIDE_DEVIATION' : 110,
         'COLLIDE_SIZE' : (20, 144),
-        'SPEED' : (-0.3, 0),
+        'SPEED' : (-0.9, 0),
         'SUMMON_CD' : -1,
         'CANPICK' : False,
         'PRICE' : 0,
