@@ -10,6 +10,7 @@ class ObjectBase(image.Image):
         self.preIndexTime = 0
         self.prePositionTime = 0
         self.preSummonTime = 0
+        self.preAttackTime = 0
         self.hp = self.getData()['HP']
         self.atk = self.getData()['ATK']
         super(ObjectBase, self).__init__(
@@ -41,6 +42,9 @@ class ObjectBase(image.Image):
         return self.getData()['COLLIDE_SIZE']
     def getSummonCD(self):
         return self.getData()['SUMMON_CD']
+
+    def getAttackCD(self):
+        return self.getData()['ATTACK_CD']
     def canPick(self):
         return self.getData()['CANPICK']
     def canFight(self):
@@ -76,7 +80,7 @@ class ObjectBase(image.Image):
         if self.status == 0:
             self.pos = (self.pos[0] + speed[0], self.pos[1] + speed[1])
         elif self.status == 1:
-            self.pos = (self.pos[0] + speed[0]/2, self.pos[1] + speed[1]/2)
+            return True
         return True
 
     def preSummon(self):

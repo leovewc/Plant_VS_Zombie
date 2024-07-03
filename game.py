@@ -85,12 +85,18 @@ class Game(object):
                     if summon.hp <= 0:
                         summon.summonSound()
                         self.summons.remove(summon)
-                    return
+                        return
 
     def checkZombieVSPlant(self):
-        for plant in self.plants:
-            for zombie in self.zombies:
+
+        for zombie in self.zombies:
+            zombie.status = 0
+            for plant in self.plants:
                 if zombie.isCollide(plant):
+                    zombie.status = 1
+                    if time.time() - zombie.preAttackTime <= zombie.getAttackCD():
+                        continue
+                    zombie.preAttackTime = time.time()
                     self.fight(zombie, plant)
                     if plant.hp <= 0:
                         x, y = self.getIndexByPos(plant.pos)
@@ -98,7 +104,7 @@ class Game(object):
                         self.hasPlant[x][y] = 0
                     if zombie.hp <= 0:
                         self.zombies.remove(zombie)
-                    return
+                        return
 
     def getIndexByPos(self, pos):
         x = (pos[0] - LEFT_TOP[0]) // GRID_SIZE[0]

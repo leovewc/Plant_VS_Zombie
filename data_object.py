@@ -31,6 +31,7 @@ data = {
         'COLLIDE_SIZE' : (20, 70),
         'SPEED' : (-0.9, 0),
         'SUMMON_CD' : -1,
+        'ATTACK_CD' : 0.5,
         'CANPICK' : False,
         'CANFIGHT' : True,
         'PRICE' : 0,
