@@ -2,6 +2,7 @@ import image
 import time
 import data_object
 import pygame as py
+from const import *
 class ObjectBase(image.Image):
     def __init__(self, id, pos):
         self.id = id
@@ -11,10 +12,13 @@ class ObjectBase(image.Image):
         self.prePositionTime = 0
         self.preSummonTime = 0
         self.preAttackTime = 0
+
         self.hp = self.getData()['HP']
         self.atk = self.getData()['ATK']
         super(ObjectBase, self).__init__(
+            self.status,
             self.getData()['PATH'],
+            self.getData()['ATTACK_PATH'],
             0,
             pos,
             self.getData()['SIZE'],
@@ -29,6 +33,10 @@ class ObjectBase(image.Image):
     def summonSound(self):
         sound1 = py.mixer.Sound(self.getData()['SUMMON_SOUND_PATH'])
         sound1.play()
+    def summonBurst(self, Win):
+        if self.id == 0:
+            Win.blit(py.image.load(PATH_PEA_BULLET_BURST), self.getRect(0, 0, (52, 46)))
+
     def isCollide(self, other):
         if self.getRect(self.getCollideDeviation(), self.getCollideDeviationY(), self.getCollideSize()).colliderect(other.getRect(other.getCollideDeviation(), other.getCollideDeviationY(), other.getCollideSize())):
             return True
@@ -62,6 +70,10 @@ class ObjectBase(image.Image):
         self.preIndexTime = time.time()
 
         index = self.pathIndex + 1
+        if self.id ==5:
+            if index >= self.pathIndexCount:
+                self.status = -100
+                return
         if index >= self.pathIndexCount:
             index = 0
         self.updateIndex(index)
@@ -71,7 +83,10 @@ class ObjectBase(image.Image):
             return False
         self.preSummonTime = time.time()
         self.preSummon()
-
+    def getIndexByPos(self, pos):
+        x = (pos[0] - LEFT_TOP[0]) // GRID_SIZE[0]
+        y = (pos[1] - LEFT_TOP[1]) // GRID_SIZE[1]
+        return x, y
     def checkPosition(self):
         if time.time() - self.prePositionTime <= self.getPositionCD():
             return False

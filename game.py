@@ -11,7 +11,7 @@ import card_menu
 class Game(object):
     def __init__(self, Win):
         self.Win = Win
-        self.back = image.Image(PATH_BACK, 0, (0,0), GAME_SIZE, 0)
+        self.back = image.Image(0, PATH_BACK, PATH_BACK,0, (0,0), GAME_SIZE, 0)
         self.plants = []
         self.zombies = []
         self.summons = []
@@ -54,7 +54,8 @@ class Game(object):
         self.renderFont()
     def update(self):
 
-        self.back.update()
+
+        self.checkHaveZombie()
         for plant in self.plants:
             plant.update()
             py.draw.rect(self.Win, BLACK, plant.getRect(plant.getCollideDeviation(), plant.getCollideDeviationY(), plant.getCollideSize()))
@@ -62,9 +63,13 @@ class Game(object):
                 summ = plant.doSummon()
                 self.summons.append(summ)
         for summon in self.summons:
+            if summon.status == -100:
+                self.summons.remove(summon)
             summon.update()
-            py.draw.rect(self.Win, BLACK, summon.getRect(summon.getCollideDeviation(), summon.getCollideDeviationY(), summon.getCollideSize()))
+            #py.draw.rect(self.Win, BLACK, summon.getRect(summon.getCollideDeviation(), summon.getCollideDeviationY(), summon.getCollideSize()))
         for zombie in self.zombies:
+            if zombie.status == -100:
+                self.zombies.remove(zombie)
             zombie.update()
             py.draw.rect(self.Win, BLACK, zombie.getRect(zombie.getCollideDeviation(), zombie.getCollideDeviationY(), zombie.getCollideSize()))
         if time.time() - self.zombieGenerateTime > 2:
@@ -78,19 +83,34 @@ class Game(object):
             if not summon.canFight():
                 continue
             for zombie in self.zombies:
+                if zombie.status == -2:
+                    continue
                 if summon.isCollide(zombie):
                     self.fight(summon, zombie)
-                    if zombie.hp <= 0:
-                        self.zombies.remove(zombie)
+                    if zombie.hp <= 0 and zombie.status != -1:
+                        zombie.status = -1
+                        zombieHead = zombieBase.ZombieBase(5, zombie.pos)
+                        self.summons.append(zombieHead)
                     if summon.hp <= 0:
                         summon.summonSound()
+                        summon_copy = summon
                         self.summons.remove(summon)
-                        return
+                        summon_copy.summonBurst(self.Win)
+                        del summon_copy
+                        break
+
+
+
+
+
+
+
 
     def checkZombieVSPlant(self):
 
         for zombie in self.zombies:
-            zombie.status = 0
+            if zombie.status == -1:
+                continue
             for plant in self.plants:
                 if zombie.isCollide(plant):
                     zombie.status = 1
@@ -102,8 +122,11 @@ class Game(object):
                         x, y = self.getIndexByPos(plant.pos)
                         self.plants.remove(plant)
                         self.hasPlant[x][y] = 0
+                        zombie.status = 0
                     if zombie.hp <= 0:
-                        self.zombies.remove(zombie)
+                        zombieHead = zombieBase.ZombieBase(5, zombie.pos)
+                        self.summons.append(zombieHead)
+                        self.status = -1
                         return
 
     def getIndexByPos(self, pos):
@@ -144,6 +167,16 @@ class Game(object):
                 return True
 
         return False
+    def checkHaveZombie(self):
+        for plant in self.plants:
+           plant.status=0
+           x1, y1 = self.getIndexByPos(plant.pos)
+           for zombie in self.zombies:
+                x2, y2 = self.getIndexByPos((zombie.pos[0],zombie.pos[1]+50))
+                if y2 == y1:
+                   plant.status =1
+                   break
+        return
 
     def addPlant(self, plant_index, mouse_pos):
         x, y = self.getIndexByPos(mouse_pos)

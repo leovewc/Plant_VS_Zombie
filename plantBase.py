@@ -37,8 +37,11 @@ class PeaShooter(objectBase.ObjectBase):
         self.hasShoot = False
         self.hasBullet = False
     def preSummon(self):
-        self.pathIndex = 0
-        self.hasBullet = True
+        if self.status == 0:
+            return
+        elif self.status == 1:
+            self.pathIndex = 0
+            self.hasBullet = True
     def hasSummon(self):
         return self.hasBullet
     def doSummon(self):

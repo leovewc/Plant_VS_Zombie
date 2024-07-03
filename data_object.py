@@ -2,6 +2,7 @@ data = {
     #data of normal pea bullet
     0 : {
         'PATH' : 'picture/Bullet/PeaBullet/0.png',
+        'ATTACK_PATH' : 'picture/Bullet/PeaBullet/0.png',
         'SUMMON_SOUND_PATH' : 'sound/bulletExplode.ogg',
         'IMAGE_INDEX_MAX' : 0,
         'IMAGE_INDEX_CD' : 0.00,
@@ -22,6 +23,7 @@ data = {
     #data of normal zombie
     1 : {
         'PATH' : 'picture/Zombie/NormalZombie/%d.png',
+        'ATTACK_PATH' : 'picture/Zombie/NormalZombieAttack/%d.png',
         'IMAGE_INDEX_MAX' : 22,
         'IMAGE_INDEX_CD' : 0.1,
         'POSITION_CD' : 0.01,
@@ -42,6 +44,7 @@ data = {
     #data of sunshine
     2 : {
             'PATH' : 'picture/Sunshine/%d.png',
+            'ATTACK_PATH' : 'picture/Sunshine/%d.png',
             'SOUND_PATH' : 'sound/collectSun.ogg',
             'IMAGE_INDEX_MAX' : 22,
             'IMAGE_INDEX_CD' : 0.04,
@@ -62,6 +65,7 @@ data = {
     #data of sun flower
     3 : {
             'PATH' : 'picture/Plant/sunFlower/%d.png',
+            'ATTACK_PATH' : 'picture/Plant/sunFlower/%d.png',
             'IMAGE_INDEX_MAX' : 18,
             'IMAGE_INDEX_CD' : 0.1,
             'POSITION_CD' : 100000,
@@ -81,6 +85,7 @@ data = {
     #data of pea shooter
     4 : {
             'PATH' : 'picture/Plant/peaShooter/%d.png',
+            'ATTACK_PATH' : 'picture/Plant/peaShooter/%d.png',
             'IMAGE_INDEX_MAX' : 5,
             'IMAGE_INDEX_CD' : 0.2,
             'POSITION_CD' : 100000,
@@ -96,4 +101,24 @@ data = {
             'HP' : 100,
             'ATK' : 0,
         },
+
+    # data of NormalZombieHead
+    5: {
+        'PATH': 'picture/Zombie/NormalZombieHead/%d.png',
+        'ATTACK_PATH': 'picture/Zombie/NormalZombieHead/%d.png',
+        'IMAGE_INDEX_MAX': 12,
+        'IMAGE_INDEX_CD': 0.07,
+        'POSITION_CD': 100000,
+        'SIZE': (150, 186),
+        'COLLIDE_DEVIATION': 0,
+        'COLLIDE_DEVIATION_Y': 0,
+        'COLLIDE_SIZE': (0, 0),
+        'SPEED': (0, 0),
+        'SUMMON_CD': -1,
+        'CANPICK': False,
+        'CANFIGHT': False,
+        'PRICE': 0,
+        'HP': 100,
+        'ATK': 0,
+    },
 }
